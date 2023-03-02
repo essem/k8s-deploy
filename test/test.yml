@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-server
+spec:
+  selector:
+    matchLabels:
+      app: test-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: test-server
+    spec:
+      containers:
+        - image: <image-url>
+          name: test-server
+          env:
+            - name: BASE_URL
+              value: https://<base-url>
+          ports:
+            - containerPort: 3000

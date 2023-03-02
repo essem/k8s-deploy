@@ -1,0 +1,35 @@
+name: Test
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - id: tokens
+        run: |
+          cat << EOF >> $GITHUB_ENV
+          TOKENS<<END
+          {
+              "<image-url>": "${{ format('Hello {0}', 'world') }}",
+              "<base-url>": "github.com/essem",
+          }
+          END
+          EOF
+      - uses: essem/k8s-deploy@v1
+        with:
+          manifest: test/test.yml
+          namespace: default
+          tokens: ${{ env.TOKENS }}
+          dry-run: true
+      - uses: essem/k8s-deploy@v1
+        with:
+          manifest: test/test.yml
+          namespace: default
+          tokens: >-
+            {
+              "<image-url>": "${{ format('Hello {0}', 'world') }}",
+              "<base-url>": "github.com/essem",
+            }
+          artifact: false
+          dry-run: true

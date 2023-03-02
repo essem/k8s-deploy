@@ -1,0 +1,23 @@
+name: k8s-deploy
+description: Deploy manifest file by substituting tokens
+inputs:
+  manifest:
+    description: Location of manifest file
+    required: true
+  namespace:
+    description: Kubernetes namespace to deploy
+    required: true
+  tokens:
+    description: Substituting tokens (JSON5)
+    required: false
+  artifact:
+    description: Set true to store final manifest as artifact
+    required: false
+    default: true
+  dry-run:
+    description: Do not execute kubectl command
+    required: false
+    default: false
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
