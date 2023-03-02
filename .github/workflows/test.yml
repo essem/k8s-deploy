@@ -1,0 +1,18 @@
+name: Test
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: essem/k8s-deploy@v1.0
+        with:
+          manifest: test/test.yml
+          namespace: default
+          tokens: >-
+            {
+              "<image-url>": "${{ format('Hello {0}', 'world') }}",
+              "<base-url>": "github.com/essem",
+            }
+          artifact: true
