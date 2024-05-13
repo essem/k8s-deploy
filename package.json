@@ -1,6 +1,6 @@
 {
   "name": "k8s-deploy",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,12 @@
   },
   "homepage": "https://github.com/essem/k8s-deploy#readme",
   "dependencies": {
-    "@actions/artifact": "^1.1.1",
-    "@actions/core": "^1.10.0",
+    "@actions/artifact": "^2.1.7",
+    "@actions/core": "^1.10.1",
     "json5": "^2.2.3"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.36.1",
-    "prettier": "^2.8.4"
+    "@vercel/ncc": "^0.38.1",
+    "prettier": "^3.2.5"
   }
 }

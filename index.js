@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const childProcess = require('child_process');
 const core = require('@actions/core');
-const artifact = require('@actions/artifact');
+const { DefaultArtifactClient } = require('@actions/artifact');
 const JSON5 = require('json5');
 
 (async () => {
@@ -26,7 +26,7 @@ const JSON5 = require('json5');
     const makeArtifact = core.getInput('artifact');
     if (makeArtifact === 'true') {
       console.log('Upload artifact...');
-      const artifactClient = artifact.create();
+      const artifactClient = new DefaultArtifactClient();
       await artifactClient.uploadArtifact(
         path.basename(manifestPath),
         [manifestPath],
